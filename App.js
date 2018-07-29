@@ -1,27 +1,15 @@
 import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  Image,
-  TextInput,
-  TouchableHighlight,
-  TouchableOpacity,
-  Alert
-} from 'react-native';
 
 //importing all screens.
-import {home} from './screens/Homescreen';
-import {HbA1c} from './Screens/Hba1cScreen';
-import {SerCholesterol} from './Screens/SerCholestrolScreen';
-import {RenalInvol} from './Screens/RenalInvolScreen';
-import {Smoking} from './Screens/SmokingScreen';
-import {Duration} from './Screens/DurationScreen';
-import {History} from './Screens/HistoryScreen';
-import {Followup} from './Screens/FollowupScreen';
-import {Output} from './Screens/OutputScreen';
+import HomeScreen from './Screens/Homescreen';
+import HbA1cScreen from './Screens/Hba1cScreen';
+import SerCholesterolScreen from './Screens/SerCholestrolScreen';
+import RenalInvolScreen from './Screens/RenalInvolScreen';
+import Smokingscreen from './Screens/SmokingScreen';
+import DurationScreen from './Screens/DurationScreen';
+import HistoryScreen from './Screens/HistoryScreen';
+import FollowupScreen from './Screens/FollowupScreen';
+import OutputScreen from './Screens/OutputScreen';
 
 
 //importing stack navigator to navigate across screens,

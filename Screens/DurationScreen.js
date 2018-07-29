@@ -1,64 +1,65 @@
 import React, { Component } from 'react';
 import {
-  AppRegistry,
-  StyleSheet,
   Text,
   View,
   Button,
-  Image,
-  TextInput,
-  TouchableHighlight,
-  TouchableOpacity,
-  Alert
+  Alert,
+  Picker
 } from 'react-native';
-import { StackNavigator } from 'react-navigation';
+import RNPickerSelect from 'react-native-picker-select';
 
-import { Dropdown } from 'react-native-material-dropdown';
-class DurationScreen extends React.Component{
+//importing custom external stylesheet.
+import styles from './CSS/css'; 
+
+//screen to select Duration.
+export default class DurationScreen extends React.Component{
     constructor(props){
         super(props);
-        this.state={DurationInput:""};
+        this.state = {DurationInput:undefined,
+            items:[
+                {label:'5 - 10 years',value:'2',},
+                {label:'11 - 15 years', value:'1.5',},
+                {label:'16 - 20 years', value:'1',},
+                {label:'> 20 years', value:'0.5',},
+            ],
+        };
     }
+    
 
     _validate=()=>{
-        if(this.state.DurationInput==''){
+        if(this.state.DurationInput==undefined){
             Alert.alert("Choose a valid option");
         }
         else{
-            this.props.navigation.navigate('History');
+            this.props.navigation.navigate('History'); //navigate to HistoryScreen.
         }
     }
 
     render(){
-        let data =[{
-            value: '5-10 Years'
-        },{
-            value: '11-15 Years'
-        },{
-            value: '16-20 Years'
-        },{
-            value: '>20 Years'
-        }
-        
-        ]
+
         return(
             <View style={styles.container}>
-            <Text style={styles.paragraph}>
-                 Duration
-           </Text>
+
+                <Text style={styles.paragraph}>
+                     Duration
+                </Text>
            
-            {/* select drop down list for Duration */}
-            <Dropdown 
-                label='Duration'
-                data = {data}
-            />
+                {/* picker list for Duration */}
+                <RNPickerSelect 
+                    placeholder={{
+                        label:'Duration',
+                        value:null,
+                        }}
+                    items={this.state.items}
+                    value={this.state.DurationInput}
+                    onValueChange={(value) => {this.setState({DurationInput:value});}}/>              
             
-             {/* used to display History Screen */}
-            <Button
-            title="Next" 
-            onPress={this._validate}/>
+                 {/* used to display History Screen */}
+                <Button
+                    title="Next" 
+                    onPress={()=>{this._validate()}}/>
              
-           </View>
+            </View>
         );
     }
 }

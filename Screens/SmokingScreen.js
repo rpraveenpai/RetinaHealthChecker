@@ -1,61 +1,58 @@
 import React, { Component } from 'react';
 import {
-  AppRegistry,
-  StyleSheet,
   Text,
   View,
   Button,
-  Image,
-  TextInput,
-  TouchableHighlight,
-  TouchableOpacity,
   Alert
 } from 'react-native';
-import { StackNavigator } from 'react-navigation';
+import styles from './CSS/css'; //importing custom external stylesheet.
+import RNPickerSelect from 'react-native-picker-select';
 
-import { Dropdown } from 'react-native-material-dropdown';
-import styles from './CSS/css';
 
 export default class Smokingscreen extends React.Component{
     constructor(props){
-        super(props);
-        this.state={SmokeVal:""};
+        super(props); 
+             
+        this.state = {SmokeVal:undefined,
+            items:[
+                {label:'No',value:'0',},
+                {label:'Yes', value:'1',},
+                {label:'Related Lung Disease', value:'2',},
+            ],
+        };
     }
 
     _validate=()=>{
-        if(this.state.SmokeVal==''){
+        if(this.state.SmokeVal==undefined){
             Alert.alert("Choose a valid option");
         }
         else{
-            this.props.navigation.navigate('Duration');
+            this.props.navigation.navigate('Duration'); //navigate to DurationScreen.
         }
     }
 
     render(){
-        let data =[{
-            value: 'No',
-        },{
-            value: 'Yes'
-        },{
-            value: 'Related Lung Disease'
-        }
-        ]
         return(
             <View style={styles.container}>
-            <Text style={styles.paragraph}>
-                 Smoking
-           </Text>
-           
-            {/* select drop down list for Smoking value */}
-            <Dropdown 
-                label='Smoking'
-                data = {data}
-            />
+          
+                <Text style={styles.paragraph}>
+                    Smoking
+                </Text>
             
-             {/* used to display DUration screen */}
-            <Button 
-            title="Next"
-            onPress={this._validate}/>
+                {/* select drop down list for Smoking value */}
+                <RNPickerSelect 
+                    placeholder={{
+                        label:'Smoking',
+                        value:null,
+                    }}
+                    items={this.state.items}
+                    value={this.state.SmokeVal}
+                    onValueChange={(value) => {this.setState({SmokeVal:value});}} />
+            
+                {/* used to display DUration screen */}
+                <Button 
+                    title="Next"
+                    onPress={()=>{this._validate()}}/>
             
            </View>
         );

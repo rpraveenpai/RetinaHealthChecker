@@ -1,21 +1,15 @@
 import React, { Component } from 'react';
 import {
-  AppRegistry,
-  StyleSheet,
   Text,
   View,
   Button,
-  Image,
   TextInput,
-  TouchableHighlight,
-  TouchableOpacity,
   Alert
 } from 'react-native';
-import { StackNavigator } from 'react-navigation';
+import styles from './CSS/css'; //importing custom external stylesheet.
 
-import { Dropdown } from 'react-native-material-dropdown';
-
-class HbA1cScreen extends React.Component{
+//screen to enter Hba1c Value
+export default class HbA1cScreen extends React.Component{
     constructor(props){
         super(props);
         this.state={HbA1cInput:''};
@@ -27,7 +21,7 @@ class HbA1cScreen extends React.Component{
             Alert.alert("Enter a valid value");
         }
         else{
-            this.props.navigation.navigate('SerCholesterol');
+            this.props.navigation.navigate('SerCholesterol',{HbA1cInput: this.state.HbA1cInput}); //navigate to SerCholesterolScreen
         }
     }
 
@@ -35,20 +29,20 @@ class HbA1cScreen extends React.Component{
         return(
             
             <View style={styles.container}>
-            <Text style={styles.paragraph}>
-                Enter HbA1c
-           </Text>
-           <TextInput
-             keyboardType = 'numeric'
-            onChangeText={(text)=>this.setState({HbA1cInput:text})}
-            />    
-        
-        {/*button to go to Serlum CHolesterol Screen.*/}
-            <Button title="Next"
-            onPress={this._validateHbA1c}
-             />
 
-           </View>          
+                <Text style={styles.paragraph}>
+                    Enter HbA1c
+                </Text>
+
+                <TextInput
+                    keyboardType = 'numeric'
+                    onChangeText={(text)=>this.setState({HbA1cInput:text})}/>                    
+        
+                {/*button to go to Serlum CHolesterol Screen.*/}
+                <Button title="Next"
+                    onPress={()=>{this._validateHbA1c()}}/>                
+
+            </View>          
           
         );
     }

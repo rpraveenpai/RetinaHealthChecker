@@ -24,6 +24,7 @@
     "react-native": "~0.54.1",
     "react-native-material-dropdown": "^0.11.1",
     "react-native-picker": "^4.3.5",
+    "react-native-picker-select": "^4.1.0",
     "react-navigation": "^1.5.12",
     "react-picker": "^1.2.11"
   }
