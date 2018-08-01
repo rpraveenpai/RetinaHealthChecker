@@ -3,13 +3,12 @@ import {
   Text,
   View,
   Button,
-  Alert,
-  Picker
+  Alert
 } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
-
 //importing custom external stylesheet.
 import styles from './CSS/css'; 
+import DataStore from '../DataStore/DataStore';
 
 //screen to select Duration.
 export default class DurationScreen extends React.Component{
@@ -31,7 +30,8 @@ export default class DurationScreen extends React.Component{
             Alert.alert("Choose a valid option");
         }
         else{
-            this.props.navigation.navigate('History'); //navigate to HistoryScreen.
+            DataStore.updateDuration(this.state.DurationInput); //stores DurationInput to MobX DataStore
+            this.props.navigation.navigate('History'); //navigate to HistoryScreen
         }
     }
 
@@ -57,9 +57,12 @@ export default class DurationScreen extends React.Component{
                  {/* used to display History Screen */}
                 <Button
                     title="Next" 
-                    onPress={()=>{this._validate()}}/>
+                    onPress={()=>{this._validate()}}
+                    
+                    />
              
             </View>
         );
     }
+
 }

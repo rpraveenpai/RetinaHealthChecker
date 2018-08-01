@@ -1,0 +1,10 @@
+*Full commit descriptions will be posted here*
+*Commits from August 1 2018*
+
+
+Aug 1-2018:
+*Implemented Mobx to store states and retrieve it in outpage page.
+*Added more Comments.
+*Reverted back to React Navigation from Router flex for navigating between screen because router only supports older version of Mobx.
+
+

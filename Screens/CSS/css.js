@@ -21,6 +21,14 @@ const styles=StyleSheet.create({
             alignItems: 'center',
             backgroundColor: '#FFF8E1',
         },
+
+        output:{
+            margin:24,
+            fontSize:18,
+            fontWeight:'bold',
+            textAlign:'center',
+            color:'red',
+        }
       
 });
 export default styles;

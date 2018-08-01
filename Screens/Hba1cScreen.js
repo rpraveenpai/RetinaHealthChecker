@@ -6,9 +6,12 @@ import {
   TextInput,
   Alert
 } from 'react-native';
-import styles from './CSS/css'; //importing custom external stylesheet.
+import styles from './CSS/css'; //importing custom external stylesheet. 
+import { observer } from 'mobx-react';
+import DataStore from '../DataStore/DataStore';
 
 //screen to enter Hba1c Value
+@observer
 export default class HbA1cScreen extends React.Component{
     constructor(props){
         super(props);
@@ -21,7 +24,8 @@ export default class HbA1cScreen extends React.Component{
             Alert.alert("Enter a valid value");
         }
         else{
-            this.props.navigation.navigate('SerCholesterol',{HbA1cInput: this.state.HbA1cInput}); //navigate to SerCholesterolScreen
+            DataStore.updateHBA1C(this.state.HbA1cInput); //Stores HbA1cInput to Mobx DataStore.
+            this.props.navigation.navigate('SerCholesterol'); //navigate to SerCholesterolScreen
         }
     }
 

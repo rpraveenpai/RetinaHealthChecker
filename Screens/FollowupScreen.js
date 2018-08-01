@@ -3,10 +3,10 @@ import {
   Text,
   View,
   Button,
-  Alert,
-  Picker
+  Alert
 } from 'react-native';
-import RNPickerSelect from 'react-native-picker-select';
+import RNPickerSelect from 'react-native-picker-select'; 
+import DataStore from '../DataStore/DataStore';
 import styles from './CSS/css'; //importing custom external stylesheet.
 
 //Screen to select Follow Up.
@@ -26,7 +26,9 @@ export default class FollowupScreen extends React.Component{
             Alert.alert("Choose a valid option");
         }
         else{
+            DataStore.updateFollowUp(this.state.FollowVal); //stores FollowVal to Mobx Datastore.
             this.props.navigation.navigate('Output'); //navigate to OutputScreen
+            
         }
     }
 
@@ -58,4 +60,5 @@ export default class FollowupScreen extends React.Component{
             </View>
         );
     }
+ 
 }

@@ -7,7 +7,7 @@ import {
   Alert
 } from 'react-native';
 import styles from './CSS/css'; //importing custom external stylesheet.
-
+import DataStore from '../DataStore/DataStore';
 
 export default class SerCholesterolScreen extends React.Component{
     constructor(props){
@@ -20,7 +20,8 @@ export default class SerCholesterolScreen extends React.Component{
             Alert.alert("Enter a valid value");
         }
         else{
-            this.props.navigation.navigate('RenalInvol');
+            DataStore.updateSerChol(this.state.SerCholInput); //stores SerCholInput to Mobx DataStore.
+            this.props.navigation.navigate('RenalInvol'); //navigate to RenalInvolScreen
         }
     }
 
@@ -45,4 +46,6 @@ export default class SerCholesterolScreen extends React.Component{
         </View>
         );
     }
+    
+    
 }

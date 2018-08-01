@@ -5,7 +5,7 @@ import {
   Button,
   Alert
 } from 'react-native';
-import { Dropdown } from 'react-native-material-dropdown';
+import DataStore from '../DataStore/DataStore';
 import styles from './CSS/css'; //importing custom external stylesheet.
 import RNPickerSelect from 'react-native-picker-select';
 
@@ -13,7 +13,7 @@ import RNPickerSelect from 'react-native-picker-select';
 export default class RenalInvolScreen extends React.Component{
     constructor(props){
         super(props);
-        this.state = {RenalValue:'',
+        this.state = {RenalValue:undefined,
             items:[
                 {label:'No',value:'0',},
                 {label:'Microalbumineuria', value:'1',},
@@ -28,7 +28,8 @@ export default class RenalInvolScreen extends React.Component{
             Alert.alert("Invalid input");
         }
         else{
-            this.props.navigation.navigate('Smoking');
+            DataStore.updateRenalInv(this.state.RenalValue); //stores RenalValue to Mobx Datastore.
+            this.props.navigation.navigate('Smoking');  //navigate to Smokingscreen.
         }
         
     }   
@@ -59,4 +60,5 @@ export default class RenalInvolScreen extends React.Component{
             </View>      
         );
     }
+  
 }

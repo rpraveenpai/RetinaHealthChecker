@@ -3,12 +3,11 @@ import {
   Text,
   View,
   Button,
-  Alert,
-  Picker
+  Alert
 } from 'react-native';
 import styles from './CSS/css'; //importing custom external stylesheet.
 import RNPickerSelect from 'react-native-picker-select';
-
+import DataStore from '../DataStore/DataStore';
 //Screen to select History of Coronory Artery Disease or stroke
 export default class HistoryScreen extends React.Component{
     constructor(props){
@@ -26,6 +25,7 @@ export default class HistoryScreen extends React.Component{
             Alert.alert("Choose a valid option");
         }
         else{
+            DataStore.updateHistory(this.state.HistoryVal); //stores HistoryVal to Mobx DataStore.
             this.props.navigation.navigate('Followup'); //navigate to FollowupScreen.
         }
     }
@@ -56,4 +56,5 @@ export default class HistoryScreen extends React.Component{
             </View>
         );
     }
+
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import 'es6-symbol/implement';
 
-//importing all screens.
 import HomeScreen from './Screens/Homescreen';
 import HbA1cScreen from './Screens/Hba1cScreen';
 import SerCholesterolScreen from './Screens/SerCholestrolScreen';
@@ -11,19 +11,18 @@ import HistoryScreen from './Screens/HistoryScreen';
 import FollowupScreen from './Screens/FollowupScreen';
 import OutputScreen from './Screens/OutputScreen';
 
-
 //importing stack navigator to navigate across screens,
 import { StackNavigator } from 'react-navigation';
 
-//rendering all the screen in rootstack
-export default class RetinaApp extends React.Component {
-    render() {
-      return <RootStack />;
-    }
-  }
 
-  //creating a stacknavigator to navigate through selected screens.
-  const RootStack = StackNavigator(
+export default class App extends Component {
+
+render() {
+   return <RootStack />;
+    }
+}
+
+const RootStack = StackNavigator(
     {
       Home: {
         screen: HomeScreen,
@@ -57,5 +56,4 @@ export default class RetinaApp extends React.Component {
       //setting initial route as Home.
     initialRouteName: 'Home',
   }
-);  
-    
+);

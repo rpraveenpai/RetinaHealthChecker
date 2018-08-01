@@ -6,9 +6,7 @@ import {
   Image,
   TextInput,
 } from 'react-native';
-
 import styles from './CSS/css'; //importing custom external stylesheet.
-
 //home screen--displays the retina in respect to the number chosen.
 export default class HomeScreen extends React.Component{
 

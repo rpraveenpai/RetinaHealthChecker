@@ -7,12 +7,11 @@ import {
 } from 'react-native';
 import styles from './CSS/css'; //importing custom external stylesheet.
 import RNPickerSelect from 'react-native-picker-select';
-
+import DataStore from '../DataStore/DataStore';
 
 export default class Smokingscreen extends React.Component{
     constructor(props){
         super(props); 
-             
         this.state = {SmokeVal:undefined,
             items:[
                 {label:'No',value:'0',},
@@ -27,6 +26,7 @@ export default class Smokingscreen extends React.Component{
             Alert.alert("Choose a valid option");
         }
         else{
+            DataStore.updateSmoke(this.state.SmokeVal); //stores SmokeVal to Mobx DataStore.
             this.props.navigation.navigate('Duration'); //navigate to DurationScreen.
         }
     }
@@ -49,7 +49,7 @@ export default class Smokingscreen extends React.Component{
                     value={this.state.SmokeVal}
                     onValueChange={(value) => {this.setState({SmokeVal:value});}} />
             
-                {/* used to display DUration screen */}
+                {/* used to display Duration screen */}
                 <Button 
                     title="Next"
                     onPress={()=>{this._validate()}}/>
@@ -57,4 +57,5 @@ export default class Smokingscreen extends React.Component{
            </View>
         );
     }
+
 }
